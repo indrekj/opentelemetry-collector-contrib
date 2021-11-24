@@ -151,6 +151,75 @@ func TestAttributes_InsertFromAttribute(t *testing.T) {
 	}
 }
 
+func TestAttributes_InsertFromAttributeWithPrefix(t *testing.T) {
+
+	testCases := []testCase{
+		// Ensure no attribute is inserted because because attributes do not exist.
+		{
+			name:               "InsertEmptyAttributes",
+			inputAttributes:    map[string]pdata.AttributeValue{},
+			expectedAttributes: map[string]pdata.AttributeValue{},
+		},
+		// Ensure no attribute is inserted because because from_attribute `string_key` does not exist.
+		{
+			name: "InsertMissingFromAttribute",
+			inputAttributes: map[string]pdata.AttributeValue{
+				"bob": pdata.NewAttributeValueString("bobby"),
+			},
+			expectedAttributes: map[string]pdata.AttributeValue{
+				"bob": pdata.NewAttributeValueString("bobby"),
+			},
+		},
+		// Ensure prefix is not used for non-string values
+		{
+			name: "InsertAttributeNotString",
+			inputAttributes: map[string]pdata.AttributeValue{
+				"anotherkey": pdata.NewAttributeValueInt(8892342),
+			},
+			expectedAttributes: map[string]pdata.AttributeValue{
+				"anotherkey": pdata.NewAttributeValueInt(8892342),
+				"string key": pdata.NewAttributeValueInt(8892342),
+			},
+		},
+		// Ensure `string key` is set.
+		{
+			name: "InsertAttributeExists",
+			inputAttributes: map[string]pdata.AttributeValue{
+				"anotherkey": pdata.NewAttributeValueString("here"),
+			},
+			expectedAttributes: map[string]pdata.AttributeValue{
+				"anotherkey": pdata.NewAttributeValueString("here"),
+				"string key": pdata.NewAttributeValueString("someprefix:here"),
+			},
+		},
+		// Ensures no insert is performed because the keys `string key` already exist.
+		{
+			name: "InsertKeysExists",
+			inputAttributes: map[string]pdata.AttributeValue{
+				"anotherkey": pdata.NewAttributeValueString("hello"),
+				"string key": pdata.NewAttributeValueString("here"),
+			},
+			expectedAttributes: map[string]pdata.AttributeValue{
+				"anotherkey": pdata.NewAttributeValueString("hello"),
+				"string key": pdata.NewAttributeValueString("here"),
+			},
+		},
+	}
+	cfg := &Settings{
+		Actions: []ActionKeyValue{
+			{Key: "string key", Action: INSERT, FromAttribute: "anotherkey", Prefix: "someprefix:"},
+		},
+	}
+
+	ap, err := NewAttrProc(cfg)
+	require.Nil(t, err)
+	require.NotNil(t, ap)
+
+	for _, tt := range testCases {
+		runIndividualTestCase(t, tt, ap)
+	}
+}
+
 func TestAttributes_UpdateValue(t *testing.T) {
 
 	testCases := []testCase{

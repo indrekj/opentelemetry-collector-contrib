@@ -42,6 +42,11 @@ type ActionKeyValue struct {
 	// The type of the value is inferred from the configuration.
 	Value interface{} `mapstructure:"value"`
 
+	// Prefix specifies the value to prepend.
+	// Note: The value of the source key must be a string. If it isn't, no
+	// extraction will occur.
+	Prefix string `mapstructure:"prefix"`
+
 	// A regex pattern  must be specified for the action EXTRACT.
 	// It uses the attribute specified by `key' to extract values from
 	// The target keys are inferred based on the names of the matcher groups
@@ -115,6 +120,7 @@ const (
 type attributeAction struct {
 	Key           string
 	FromAttribute string
+	Prefix        string
 	// Compiled regex if provided
 	Regex *regexp.Regexp
 	// Attribute names extracted from the regexp's subexpressions.
@@ -175,6 +181,8 @@ func NewAttrProc(settings *Settings) (*AttrProc, error) {
 			} else {
 				action.FromAttribute = a.FromAttribute
 			}
+
+			action.Prefix = a.Prefix
 		case HASH, DELETE:
 			if a.Value != nil || a.FromAttribute != "" || a.RegexPattern != "" {
 				return nil, fmt.Errorf("error creating AttrProc. Action \"%s\" does not use \"value\", \"pattern\" or \"from_attribute\" field. These must not be specified for %d-th action", a.Action, i)
@@ -227,6 +235,11 @@ func (ap *AttrProc) Process(attrs pdata.AttributeMap) {
 			if !found {
 				continue
 			}
+
+			if av.Type() == pdata.AttributeValueTypeString && action.Prefix != "" {
+				av = pdata.NewAttributeValueString(action.Prefix + av.StringVal())
+			}
+
 			attrs.Insert(action.Key, av)
 		case UPDATE:
 			av, found := getSourceAttributeValue(action, attrs)

@@ -39,6 +39,8 @@ For the actions `insert`, `update` and `upsert`,
   # FromAttribute specifies the attribute from the span to use to populate
   # the value. If the attribute doesn't exist, no action is performed.
   from_attribute: <other key>
+  # (optional) Prepends a string value with a prefix
+  prefix: <prefix>
 ```
 
 For the `delete` action,
