@@ -8,7 +8,7 @@ require (
 	go.opentelemetry.io/otel/metric v0.25.0
 	go.opentelemetry.io/otel/sdk/export/metric v0.25.0
 	go.opentelemetry.io/otel/sdk/metric v0.25.0
-	go.uber.org/zap v1.19.1
+	go.uber.org/zap v1.23.0
 )
 
 require (
