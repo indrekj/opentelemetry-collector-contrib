@@ -11,7 +11,7 @@ require (
 	go.uber.org/zap v1.19.1
 )
 
-require google.golang.org/protobuf v1.27.1
+require google.golang.org/protobuf v1.28.1
 
 require (
 	github.com/benbjohnson/clock v1.2.0 // indirect
