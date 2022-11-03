@@ -13,7 +13,7 @@ require (
 	github.com/tidwall/wal v0.1.6
 	go.opentelemetry.io/collector v0.39.1-0.20211122170858-f69d23494726
 	go.opentelemetry.io/collector/model v0.39.1-0.20211122170858-f69d23494726
-	go.uber.org/multierr v1.7.0
+	go.uber.org/multierr v1.8.0
 )
 
 require (
