@@ -15,7 +15,6 @@ require (
 )
 
 require (
-	github.com/Azure/go-ansiterm v0.0.0-20170929234023-d6e3b3328b78 // indirect
 	github.com/Microsoft/go-winio v0.4.17 // indirect
 	github.com/benbjohnson/clock v1.2.0 // indirect
 	github.com/cenkalti/backoff/v4 v4.1.2 // indirect
@@ -47,7 +46,6 @@ require (
 	golang.org/x/sys v0.0.0-20211013075003-97ac67df715c // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b // indirect
-	gotest.tools/v3 v3.0.3 // indirect
 )
 
 replace github.com/open-telemetry/opentelemetry-collector-contrib/extension/observer => ../
