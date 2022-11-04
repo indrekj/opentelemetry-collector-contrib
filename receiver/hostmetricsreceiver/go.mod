@@ -10,7 +10,7 @@ require (
 	go.opentelemetry.io/collector v0.39.1-0.20211122170858-f69d23494726
 	go.opentelemetry.io/collector/model v0.39.1-0.20211122170858-f69d23494726
 	go.uber.org/zap v1.19.1
-	golang.org/x/sys v0.0.0-20211013075003-97ac67df715c
+	golang.org/x/sys v0.0.0-20220610221304-9f5ed59c137d
 
 )
 
@@ -39,7 +39,7 @@ require (
 	go.uber.org/atomic v1.9.0 // indirect
 	go.uber.org/multierr v1.7.0 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
-	gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b // indirect
+	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
 
 replace github.com/open-telemetry/opentelemetry-collector-contrib/internal/coreinternal => ../../internal/coreinternal
