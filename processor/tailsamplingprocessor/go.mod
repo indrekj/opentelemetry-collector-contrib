@@ -5,8 +5,8 @@ go 1.17
 require (
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da
 	github.com/google/uuid v1.3.0
-	github.com/stretchr/testify v1.7.0
-	go.opencensus.io v0.23.0
+	github.com/stretchr/testify v1.8.1
+	go.opencensus.io v0.24.0
 	go.opentelemetry.io/collector v0.39.1-0.20211122170858-f69d23494726
 	go.opentelemetry.io/collector/model v0.39.1-0.20211122170858-f69d23494726
 	go.uber.org/zap v1.19.1
@@ -35,5 +35,5 @@ require (
 	go.uber.org/multierr v1.7.0 // indirect
 	golang.org/x/sys v0.0.0-20211013075003-97ac67df715c // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
-	gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b // indirect
+	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
