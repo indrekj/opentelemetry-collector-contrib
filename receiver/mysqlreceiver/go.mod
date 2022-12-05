@@ -3,7 +3,7 @@ module github.com/open-telemetry/opentelemetry-collector-contrib/receiver/mysqlr
 go 1.17
 
 require (
-	github.com/go-sql-driver/mysql v1.6.0
+	github.com/go-sql-driver/mysql v1.7.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/internal/scrapertest v0.39.0
 	github.com/stretchr/testify v1.7.0
 	go.opentelemetry.io/collector v0.39.1-0.20211122170858-f69d23494726
